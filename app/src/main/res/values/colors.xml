@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cosmic Navy -->
+    <color name="cosmic_navy">#FF041420</color>
+    <color name="cosmic_dark_blue">#FF071B2E</color>
+
+    <!-- Celestial Gold -->
+    <color name="celestial_gold">#FFF2C26C</color>
+    <color name="celestial_gold_dim">#FFB8944F</color>
+
+    <!-- Astral Aqua -->
+    <color name="astral_aqua">#FF6CE1D4</color>
+
+    <!-- Nebula Coral -->
+    <color name="nebula_coral">#FFFF6B8A</color>
+
+    <!-- Cosmic Violet -->
+    <color name="cosmic_violet">#FF9B72CF</color>
+
+    <!-- Neutral -->
+    <color name="star_white">#FFF0F0F0</color>
+    <color name="star_silver">#FFB0B8C8</color>
+
+    <!-- Legacy (kept for compatibility) -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
