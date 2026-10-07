@@ -1,80 +1,44 @@
-# Lagna Atelier
+# Lagna Atelier — Android (early scaffold)
 
-This repository looks like the beginning of an Android app for an astrology and spiritual guidance product.
+A native Android shell for [Lagna Atelier](https://lagnaatelier.site), my Vedic astrology app.
+The working product is the web app ([source](https://github.com/SwapnanilBala/Large_Astro_Web_App)).
+This repo is the start of a native client and is **not functional yet**.
 
-At the moment, it reads like an early prototype where we were trying to assemble the core building blocks first:
+## Where it stands
 
-- a Jetpack Compose Android app shell
-- navigation for multiple future flows
-- Supabase for auth, database, realtime, and storage
-- local persistence with Room and DataStore
-- CameraX for a palm-reading style feature
-- location, notifications, and media/export-related app permissions
-- Koin-based dependency injection
-- Retrofit, OkHttp, Coil, and Lottie for networking and UI support
+| Done | Not yet |
+|---|---|
+| Jetpack Compose + Material 3 app shell and theme | Every screen except Home is a placeholder |
+| Navigation graph with 10 routes: home, engine select, insights, compatibility, forecast, palm reading, workspace, login, register, pricing | Real Supabase config: the client still holds `YOUR_SUPABASE_URL` / `YOUR_SUPABASE_ANON_KEY` placeholders |
+| Koin dependency injection wired at startup | Data model for charts, readings and accounts |
+| Supabase client module (auth, Postgrest, realtime, storage) | Tests |
+| Manifest permissions for camera (palm reading), location, notifications | |
 
-## What We Seem To Be Building
+## Stack
 
-Based on the current route names and dependencies, the app appears to be aiming toward a multi-feature astrology experience with screens or flows for:
+Kotlin 2.1 · Jetpack Compose (BOM 2025.05) · Material 3 · Navigation Compose · Koin 4 ·
+Supabase Kotlin 3.1 · Retrofit / OkHttp · Room · DataStore · CameraX · Coil · Lottie
 
-- home
-- engine selection
-- insights
-- compatibility
-- forecast
-- palm reading
-- workspace
-- login and registration
-- pricing
+`minSdk 26`, `targetSdk 36`, AGP 9.1.
 
-The project name, app label, and navigation setup all point toward this being a branded mobile experience called `Lagna Atelier`.
+## Run it
 
-## Current State
+1. Open the folder in a current Android Studio. AGP 9.1 needs a recent release.
+2. Let Gradle sync. `local.properties` with your `sdk.dir` is created automatically.
+3. Run the `app` configuration on an emulator or device.
 
-Right now the codebase is still very early:
+Before wiring real data, move the Supabase URL and anon key out of
+`di/SupabaseModule.kt` into `BuildConfig` fields read from `local.properties`, and keep them out of git.
 
-- the app launches into a Compose home screen that only shows the title
-- the navigation graph is present, but most destinations are still TODO placeholders
-- Koin is wired up at application startup
-- the Supabase client module exists, but it still contains placeholder credentials
-- the Android manifest already includes permissions for internet, camera, location, notifications, storage access, and vibration
+## Structure
 
-So this repo is better described as a scaffold or foundation than a finished application.
-
-## Tech Stack
-
-- Kotlin
-- Jetpack Compose
-- Material 3
-- Android Navigation Compose
-- Koin
-- Supabase Kotlin client
-- Retrofit + OkHttp
-- Room
-- DataStore
-- CameraX
-- Coil
-- Lottie
-
-## Notes For Future Work
-
-Some obvious next steps if development continues:
-
-- move Supabase secrets out of source and into safer config
-- replace placeholder screens with real feature flows
-- connect navigation to actual user journeys
-- define the data model for charts, readings, accounts, and saved work
-- add tests once the first real features settle down
-
-## Local Development
-
-This is an Android Studio / Gradle project.
-
-Typical setup would be:
-
-1. Open the project in Android Studio.
-2. Make sure your Android SDK path is available through `local.properties`.
-3. Replace the placeholder Supabase values with real project config.
-4. Build or run the `app` module on an emulator or device.
-
-This README is intentionally preliminary and should be updated once the product direction and feature set are more concrete.
+```text
+app/src/main/java/com/lagnaatelier/app/
+├── LagnaAtelierApp.kt        Application: starts Koin
+├── MainActivity.kt           single activity, hosts the Compose tree
+├── di/                       Koin modules, including the Supabase client
+└── ui/
+    ├── navigation/           NavRoutes (10 destinations) + LagnaNavHost
+    ├── screens/home/         the one implemented screen
+    └── theme/                colours, typography, Material 3 theme
+```
